@@ -3,4 +3,8 @@
 
 df=read.table('http://poldrack.github.io/reproducible-workflows/testdata.csv')
 
-# add assertion tests
+# run linear model
+
+lm.result=lm(discrate~age,data=df)
+summary(lm.result)
+
