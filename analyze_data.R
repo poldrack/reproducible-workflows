@@ -3,8 +3,17 @@
 
 df=read.table('http://poldrack.github.io/reproducible-workflows/testdata.csv')
 
+# fix known outlier issue
+df=df[df$age<120,]
+# check data using assertion tests
+
+stopifnot(max(df$age)<120)
+stopifnot(min(df$age)>12)
+
 # run linear model
 
-lm.result=lm(discrate~age,data=df)
+lm.result=lm(performance~age,data=df)
 summary(lm.result)
 
+plot(df$age,df$performance)
+abline(lm.result)
