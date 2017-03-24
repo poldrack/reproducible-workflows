@@ -13,8 +13,8 @@ git init
 git status
 ```
 
-### create a file called somecode.R containing the following lines (which  will load the data from the Lewandowsky et al. study 
- - http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
+### create a file called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study] 
+(http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
 
 ```
 df=read.table('http://data.bris.ac.uk/datasets/swyt56qr4vaj17op9cw3sag7d/LskyetalPLOSONE.csv',
@@ -32,125 +32,139 @@ git commit -m"initial add"
 git status
 ```
 
-# let's run a linear regression model to see if
-# performance is related to age
-# - add the following code and source the file:
-lm.result=lm(conspiracist_avg~age,data=df)
+### let's run a linear regression model to see if conspiracist thinking is related to age
+
+### add the following code to somecode.R and source the file:
+```lm.result=lm(conspiracist_avg~age,data=df)
 summary(lm.result)
+```
 
-# this should also complete.  Let's go ahead and check in again
-git add somecode.R
+### This should also complete successfully.  Let's go ahead and check in again
+```git add somecode.R
 git commit -m"adding lm"
+```
 
-# let's put this into a repository on github so that we can
-# share it with others
+### Now let's put this into a repository on github so that we can share it with others and have a persistent backup.
 
 1. log into github.com
-2.  create a new repository (+ sign at top right)
-- give it the same name as your directory (BBSRC-git-demo)
-- just use the defaults (it should be public) and
-click "create repository"
-3. There will be a set of commands in the section titled
-"…or push an existing repository from the command line"
-- copy those and paste them into the terminal inside
-the directory with your git repository - somethign like:
+2. create a new repository (+ sign at top right)
+   * give it the same name as your directory (BBSRC-git-demo)
+   * just use the defaults (it should be public) and click "create repository"
+3. There will be a set of commands in the section titled "…or push an existing repository from the command line" - copy those and paste them into the terminal inside the directory with your git repository. You may need to enter your github username and password.
 
-git remote add origin git@github.com:poldrack/BBSRC-git-demo.git
+The commands willl look somethign like:
+```
+git remote add origin git@github.com:<your username>/BBSRC-git-demo.git
 git push -u origin master
+```
 
-Click on the repository link at the top of the page
-to go to the main repo page. you should see "somecode.R"
-in the list.
+Click on the repository link at the top of the page to go to the main github repo page. you should see "somecode.R" in the list.
 
 
-# let's go ahead and set up circleci to automatically
-# run a smoke test for us
-# create a file called circle.yml and add the following lines:
+### let's go ahead and set up circleci to automatically run a smoke test for us
 
+### create a file called circle.yml and add the following lines:
+
+```
 dependencies:
   pre:
     - sudo apt-get update && sudo apt-get -y install r-base
 test:
   override:
     - Rscript somecode.R
+```
 
-# then add to repo and commit and push to github
+### then add to repo and commit and push to github
 
+```
 git add circle.yml
 git commit -m"initial add"
 git push origin master
+```
 
 # next we have to hook this up to the circleci system
 
-1. go to circleci.com and log in using your github account
+1. go to [CircleCI](http:circleci.com) and log in using your github account
 2. click on the "Projects" button (with the + sign)
-Choose your github account, and then click on the
-"build project" button for your repo
-It will then take you to a page showing the status
-of the build.  for an overview, click on the "builds"
-button which will take you to a list of builds.
+3. Choose your github account, and then click on the "build project" button for your repo
+4. It will then take you to a page showing the status of the build.  for an overview, click on the "builds" button which will take you to a list of builds.
 
-after a couple of minutes it should show that the build
-succeeded
+After a couple of minutes it should show that the build succeeded
 
+### look at the log to see what we've done so far
+```git log
+```
 
-# look at the log to see what we've done so far
-git log
+### we were a bit surprised that there is no relation between age and conspiracist thinking, so let's have a closer look at the data
 
-# we are a bit surprised that there is no relation
-# between age and performance, so let's have a look
-# add the following code and source the file
+### add the following code and source the file
 
-plot(df$age,df$performance)
+```plot(df$age,df$conspiracist_avg)
+```
 
-git add somecode.R
+### Then commit the changes to the git repo.
+
+```git add somecode.R
 git commit -m"adding plot"
+```
 
-# let's say that we decided that we don't want the
-# plot in the file. We can go back to the previous commit:
+### let's say that we decided that we don't want the plot in the file. We can go back to the previous commit:
 
+First, use ```git log``` to show the log of previous commits, which will give you the commit ID (a long alphanumeric hash).
+
+Then, revert that partiuclar commit:
+
+```
 git revert <commit ID>
+```
 
-the change in the file should show up immediately in
-the RStudio editor window
+The change in the file should show up immediately in the RStudio editor window
 
-#it's clear from the plot that something is wrong
-# there is an outlier in the age distribution
-# let's first add a test to check for age outliers
-# in this study, subjects were supposed to be between
-# 20 and 60
-# add the following code above the lm command:
+### It was clear from the plot that something is wrong: there is an outlier in the age distribution
+### let's first add a test to check for age outliers
+### in this study, subjects were supposed to be adults - let's say the reasonable range of adult ages is 18 to 100
 
-stopifnot(max(df$age)<60)
-stopifnot(min(df$age)>20)
+### add the following code above the lm command:
 
-# when you source the file, you should see an error.
-# let's see what happens when we push this to github
+```
+max_age=120
+min_age=18
+stopifnot(max(df$age)<max_age)
+stopifnot(min(df$age)>min_age)
+```
+
+### when you source the file, you should see an error.
+### let's see what happens when we push this to github
+
+```
 git add somecode.R
 git commit -m"adding assertion test"
 git push origin master
+```
 
-# a few seconds later, you will see that the automated
-# test starts on circleci
-# you will see that the test fails due to the error
+### a few seconds later, you will see that the automated test starts on circleci
+### you will see that the test fails due to the error
 
-# let's add some code to clean up the outliers
-# above the assertion tests, add:
+### let's add some code to clean up the outliers
+### above the assertion tests, add:
 
-df=subset(df,age>20&age<60)
+```
+df=subset(df,age>min_age&age<max_age)
+```
 
-# run the code again - this time it succeeds
-# and we now see a strong effect of age
+### run the code again - this time it succeeds and we now see a strong effect of age (as noted in [the correction to the original paper](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0134773)): 
 
-# push it back to github and check circleci again
+### push it back to github and check circleci again
+```
 git add somecode.R
 git commit -m"adding outlier removal"
 git push origin master
+```
 
 # add a fancy badge to your github page to show off
-- go to the builds page and click the gear next to your repo
-- click on "status badges" and copy the text under "embed code"
-[![CircleCI](https://circleci.com/gh/poldrack/BBSRC-git-demo.svg?style=svg)](https://circleci.com/gh/poldrack/BBSRC-git-demo)
-- add this into a README file on github
+1. go to the builds page and click the gear next to your repo
+2. click on "status badges" and copy the text under "embed code"
+  * it will look something like ```[![CircleCI](https://circleci.com/gh/poldrack/BBSRC-git-demo.svg?style=svg)](https://circleci.com/gh/poldrack/BBSRC-git-demo)```
+3. add this into a file called README.md in your github repository
 
 
