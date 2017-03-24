@@ -35,12 +35,15 @@ git status
 ### let's run a linear regression model to see if conspiracist thinking is related to age
 
 ### add the following code to somecode.R and source the file:
-```lm.result=lm(conspiracist_avg~age,data=df)
+```
+# R code
+lm.result=lm(conspiracist_avg~age,data=df)
 summary(lm.result)
 ```
 
 ### This should also complete successfully.  Let's go ahead and check in again
-```git add somecode.R
+```
+git add somecode.R
 git commit -m"adding lm"
 ```
 
@@ -104,12 +107,15 @@ After a couple of minutes it should show that the build succeeded
 
 ### add the following code and source the file
 
-```plot(df$age,df$conspiracist_avg)
+```
+# R code
+plot(df$age,df$conspiracist_avg)
 ```
 
 ### Then commit the changes to the git repo.
 
-```git add somecode.R
+```
+git add somecode.R
 git commit -m"adding plot"
 ```
 
@@ -132,6 +138,7 @@ The change in the file should show up immediately in the RStudio editor window
 ### add the following code above the lm command:
 
 ```
+# R code
 max_age=120
 min_age=18
 stopifnot(max(df$age)<max_age)
@@ -154,6 +161,7 @@ git push origin master
 ### above the assertion tests, add:
 
 ```
+# R code
 df=subset(df,age>min_age&age<max_age)
 ```
 
