@@ -13,15 +13,15 @@ git init
 git status
 ```
 
-### create a file called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
-
+### Start up RStudio, and create a new R script called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
 ```
+# R code
 df=read.table('http://data.bris.ac.uk/datasets/swyt56qr4vaj17op9cw3sag7d/LskyetalPLOSONE.csv',
               header=TRUE,sep=',')
 head(df)
 ```
 
-### run the R script using the "source" button in Rstudio
+### After you save the file, run the R script using the "source" button in Rstudio
 
 ### (Hopefully!) this worked, so let's check our file into the repo
 ```git status
@@ -45,7 +45,7 @@ git commit -m"adding lm"
 
 ### Now let's put this into a repository on github so that we can share it with others and have a persistent backup.
 
-1. log into github.com
+1. log into [github](github.com)
 2. create a new repository (+ sign at top right)
    * give it the same name as your directory (BBSRC-git-demo)
    * just use the defaults (it should be public) and click "create repository"
@@ -60,9 +60,9 @@ git push -u origin master
 Click on the repository link at the top of the page to go to the main github repo page. you should see "somecode.R" in the list.
 
 
-### let's go ahead and set up circleci to automatically run a smoke test for us
+### Now let's set up CircleCI to automatically run a smoke test for us every time we check in a new revision of our code to github.
 
-### create a file called circle.yml and add the following lines:
+### create a file in your github repository called circle.yml and add the following lines.  An easy way to do this is to use the "Create new file" button on the github page, which will take you to an editor where you can create the file and then save and commit it with one click.
 
 ```
 dependencies:
@@ -73,7 +73,7 @@ test:
     - Rscript somecode.R
 ```
 
-### then add to repo and commit and push to github
+### if you instead created the circle.yml on your own computer using a text editor, then add to repo and commit and push to github
 
 ```
 git add circle.yml
@@ -81,7 +81,12 @@ git commit -m"initial add"
 git push origin master
 ```
 
-# next we have to hook this up to the circleci system
+### if you created it using the editor on github, then you should pull that change so that your local repository is in sync with github.
+```
+git pull origin master
+```
+
+# next we have to hook this up to the CircleCI continuous integration system
 
 1. go to [CircleCI](http:circleci.com) and log in using your github account
 2. click on the "Projects" button (with the + sign)
