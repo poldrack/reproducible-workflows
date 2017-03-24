@@ -7,26 +7,30 @@ mkdir BBSRC-git-demo
 cd BBSRC-git-demo
 ```
 
-# create a new git repository
+### create a new git repository
+```
 git init
 git status
-# create a file called somecode.R containing the following lines:
-# this will load the data from the Lewandowsky et al. study 
-# (http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637)
+```
 
+### create a file called somecode.R containing the following lines (which  will load the data from the Lewandowsky et al. study 
+ - http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
 
+```
 df=read.table('http://data.bris.ac.uk/datasets/swyt56qr4vaj17op9cw3sag7d/LskyetalPLOSONE.csv',
               header=TRUE,sep=',')
 head(df)
+```
 
-# run the R script using the "source" button in Rstudio
+### run the R script using the "source" button in Rstudio
 
-# This worked, so let's check our file into the repo
-git status
+### (Hopefully!) this worked, so let's check our file into the repo
+```git status
 git add somecode.R
 git status
 git commit -m"initial add"
 git status
+```
 
 # let's run a linear regression model to see if
 # performance is related to age
