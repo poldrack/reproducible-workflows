@@ -13,8 +13,7 @@ git init
 git status
 ```
 
-### create a file called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study] 
-(http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
+### create a file called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
 
 ```
 df=read.table('http://data.bris.ac.uk/datasets/swyt56qr4vaj17op9cw3sag7d/LskyetalPLOSONE.csv',
