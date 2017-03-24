@@ -1,9 +1,11 @@
 
 Walkthrough for BBSRC Meeting presentation on reproducible workflows
 
-# make a new directory and cd into it
+### make a new directory and cd into it
+```
 mkdir BBSRC-git-demo
 cd BBSRC-git-demo
+```
 
 # create a new git repository
 git init
