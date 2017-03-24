@@ -90,7 +90,7 @@ git push origin master
 git pull origin master
 ```
 
-# next we have to hook this up to the CircleCI continuous integration system
+### next we have to hook this up to the CircleCI continuous integration system
 
 1. go to [CircleCI](http:circleci.com) and log in using your github account
 2. click on the "Projects" button (with the + sign)
@@ -174,7 +174,7 @@ git commit -m"adding outlier removal"
 git push origin master
 ```
 
-# add a fancy badge to your github page to show off
+### add a fancy badge to your github page to show off
 1. go to the builds page and click the gear next to your repo
 2. click on "status badges" and copy the text under "embed code"
   * it will look something like ```[![CircleCI](https://circleci.com/gh/poldrack/BBSRC-git-demo.svg?style=svg)](https://circleci.com/gh/poldrack/BBSRC-git-demo)```
