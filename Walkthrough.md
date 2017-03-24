@@ -1,3 +1,8 @@
+---
+title: Reproducible computing: An initial walkthrough
+layout: page
+---
+
 # Reproducible computing: An initial walkthrough
 
 ### make a new directory and cd into it
