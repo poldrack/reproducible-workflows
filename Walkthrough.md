@@ -1,4 +1,6 @@
-# make a new directory and cd into it
+# Reproducible computing: An initial walkthrough
+
+### make a new directory and cd into it
 mkdir BBSRC-git-demo
 cd BBSRC-git-demo
 
