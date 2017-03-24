@@ -1,5 +1,7 @@
-
-
+---
+title: Reproducible computing: An initial walkthrough
+layout: page
+---
 # make a new directory and cd into it
 mkdir BBSRC-git-demo
 cd BBSRC-git-demo
@@ -8,7 +10,7 @@ cd BBSRC-git-demo
 git init
 git status
 # create a file called somecode.R containing the following lines:
-# this will load the data from the Lewandowsky et al. study
+# this will load the data from the Lewandowsky et al. study 
 # (http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637)
 
 
@@ -145,3 +147,4 @@ git push origin master
 - click on "status badges" and copy the text under "embed code"
 [![CircleCI](https://circleci.com/gh/poldrack/BBSRC-git-demo.svg?style=svg)](https://circleci.com/gh/poldrack/BBSRC-git-demo)
 - add this into a README file on github
+
