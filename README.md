@@ -90,7 +90,7 @@ git push origin master
 git pull origin master
 ```
 
-# next we have to hook this up to the CircleCI continuous integration system
+### next we have to hook this up to the CircleCI continuous integration system
 
 1. go to [CircleCI](http:circleci.com) and log in using your github account
 2. click on the "Projects" button (with the + sign)
