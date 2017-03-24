@@ -124,9 +124,9 @@ git commit -m"adding plot"
 
 ### 15. let's say that we decided that we don't want the plot in the file. We can go back to the previous commit:
 
-First, use ```git log``` to show the log of previous commits, which will give you the commit ID (a long alphanumeric hash).
+First, use ```git log``` to show the log of previous commits, which will give you the commit ID (a long alphanumeric hash) for the commit with the message "adding plot".
 
-Then, revert that partiuclar commit:
+Then, revert that particular commit:
 
 ```
 git revert <commit ID>
