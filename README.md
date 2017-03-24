@@ -20,6 +20,7 @@ df=read.table('http://data.bris.ac.uk/datasets/swyt56qr4vaj17op9cw3sag7d/Lskyeta
               header=TRUE,sep=',')
 head(df)
 ```
+Note: code to be added to the R script is marked with "# R code".  Any cells not marked this way are meant to be typed into the terminal window.
 
 ### After you save the file, run the R script using the "source" button in Rstudio
 
