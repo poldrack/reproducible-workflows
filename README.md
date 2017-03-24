@@ -1,5 +1,5 @@
 
-Walkthrough for BBSRC Meeting presentation on reproducible workflows
+## Reproducible workflow walkthrough for BBSRC Meeting
 
 ### 1. make a new directory and cd into it
 ```
@@ -101,7 +101,9 @@ git push origin master
 After a couple of minutes it should show that the build succeeded
 
 ### 12. look at the log to see what we've done so far
-```git log
+
+```
+git log
 ```
 
 ### We were a bit surprised that there is no relation between age and conspiracist thinking, so let's have a closer look at the data
