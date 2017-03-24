@@ -136,7 +136,7 @@ The change in the file should show up immediately in the RStudio editor window
 
 ### It was clear from the plot that something is wrong: there is an outlier in the age distribution
 ### let's first add a test to check for age outliers
-### in this study, subjects were supposed to be adults - let's say the reasonable range of adult ages is 18 to 100
+### in this study, subjects were supposed to be adults - let's say the reasonable range of adult ages is 18 to 120
 
 ### 16. add the following code above the lm command:
 
