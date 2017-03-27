@@ -1,6 +1,8 @@
 
 ## Reproducible workflow walkthrough for BBSRC Meeting
 
+This walkthrough assumes that you have [git](https://git-scm.com/downloads) [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) installed on your computer and that you can access a terminal window (using Terminal on the Mac, or [enabling the Linux subsystem on Windows 10](http://www.pcworld.com/article/3106463/windows/how-to-get-bash-on-windows-10-with-the-anniversary-update.html)).  It also assumes that you have created an account for yourself on [GitHub](http://github.com).
+
 ### 1. make a new directory and cd into it
 ```
 mkdir BBSRC-git-demo
@@ -32,9 +34,17 @@ git commit -m"initial add"
 git status
 ```
 
+You may experience an error when you type the command to commit the change.  In this case, you need to enter the following commands to set your identity with git:
+
+```
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+replacing the placeholders with your actual email address and name.
+
 ### Now let's run a linear regression model to see if conspiracist thinking is related to age
 
-### 6. add the following code to somecode.R and source the file:
+### 6. add the following code to the end of somecode.R and source the file using the Source button in RStudio:
 ```
 # R code
 lm.result=lm(conspiracist_avg~age,data=df)
@@ -49,7 +59,7 @@ git commit -m"adding lm"
 
 ### 8. Now let's put this into a repository on github so that we can share it with others and have a persistent backup.
 
-1. log into [github](github.com)
+1. log into [github](http://github.com/)
 2. create a new repository (+ sign at top right)
    * give it the same name as your directory (BBSRC-git-demo)
    * just use the defaults (it should be public) and click "create repository"
@@ -100,7 +110,7 @@ git push origin master
 
 After a couple of minutes it should show that the build succeeded
 
-### 12. look at the log to see what we've done so far
+### 12. Have a look at the git log to see what we've done so far, by typing this into the terminal window:
 
 ```
 git log
@@ -108,7 +118,7 @@ git log
 
 ### We were a bit surprised that there is no relation between age and conspiracist thinking, so let's have a closer look at the data
 
-### 13. add the following code and source the file in RStudio
+### 13. add the following code to the end of somecode.R and source the file in RStudio
 
 ```
 # R code
@@ -138,12 +148,13 @@ The change in the file should show up immediately in the RStudio editor window
 ### let's first add a test to check for age outliers
 ### in this study, subjects were supposed to be adults - let's say the reasonable range of adult ages is 18 to 120
 
-### 16. add the following code above the lm command:
+### 16. add the following code immediately above the lm command in somecode.R:
 
 ```
 # R code
 max_age=120
 min_age=18
+
 stopifnot(max(df$age)<max_age)
 stopifnot(min(df$age)>min_age)
 ```
@@ -159,7 +170,7 @@ git push origin master
 a few seconds later, you will see that the automated test starts on CircleCI. a bit later you will see that the test fails due to the error
 
 ### 18. let's add some code to clean up the outliers
-### above the assertion tests, add:
+### Just after the definition of min_age but before the assertion tests, add the following:
 
 ```
 # R code
@@ -179,6 +190,6 @@ git push origin master
 1. go to the builds page and click the gear next to your repo
 2. click on "status badges" and copy the text under "embed code"
   * it will look something like ```[![CircleCI](https://circleci.com/gh/poldrack/BBSRC-git-demo.svg?style=svg)](https://circleci.com/gh/poldrack/BBSRC-git-demo)```
-3. add this into a file called README.md in your github repository
+3. In your github repository, create a new file called README.md, and paste this badge code at the top of the file.
 
 
