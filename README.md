@@ -1,7 +1,7 @@
 
 ## Reproducible workflow walkthrough for BBSRC Meeting
 
-This walkthrough assumes that you have [git](https://git-scm.com/downloads) [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) installed on your computer and that you can access a terminal window (using Terminal on the Mac, or [enabling the Linux subsystem on Windows 10](http://www.pcworld.com/article/3106463/windows/how-to-get-bash-on-windows-10-with-the-anniversary-update.html)).  It also assumes that you have created an account for yourself on [GitHub](http://github.com).
+This walkthrough assumes that you have [git](https://git-scm.com/downloads) and [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) installed on your computer and that you can access a terminal window (using Terminal on the Mac, or Git Bash on Windows).  It also assumes that you have created an account for yourself on [GitHub](http://github.com).
 
 ### 1. make a new directory and cd into it
 ```
