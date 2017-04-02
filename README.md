@@ -18,7 +18,8 @@ You can now check the status of your local repository (it should be empty)
 git status
 ```
 
-### 3. Start up RStudio, and create a new R script called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
+### 3. Create a sample source code file.
+Start up RStudio. Create a new R script called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
 ```
 # R code
 df=read.table('http://data.bris.ac.uk/datasets/swyt56qr4vaj17op9cw3sag7d/LskyetalPLOSONE.csv',
@@ -28,6 +29,7 @@ head(df)
 Note: code to be added to the R script is marked with "# R code".  Any cells not marked this way are meant to be typed into the terminal window.
 
 ### 4. After you save the file, run the R script using the "source" button in Rstudio
+Remember to save the file inside the `BBSRC-git-demo` directory you created in step 1.
 
 ### 5. (Hopefully!) this worked, so let's check our file into the repo
 ```git status
