@@ -72,7 +72,7 @@ git commit -m"adding lm"
 
 The commands willl look something like:
 ```
-git remote add origin git@github.com:<your username>/BBSRC-git-demo.git
+git remote add origin https://github.com/<your username>/BBSRC-git-demo.git
 git push -u origin master
 ```
 
