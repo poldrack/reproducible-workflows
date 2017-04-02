@@ -9,9 +9,12 @@ mkdir BBSRC-git-demo
 cd BBSRC-git-demo
 ```
 
-### 2. create a new git repository
+### 2. create a new (local) git repository
 ```
 git init
+```
+You can now check the status of your local repository (it should be empty)
+```
 git status
 ```
 
