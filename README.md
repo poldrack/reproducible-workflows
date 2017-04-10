@@ -1,19 +1,25 @@
 
 ## Reproducible workflow walkthrough for BBSRC Meeting
 
+This walkthrough assumes that you have [git](https://git-scm.com/downloads) and [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) installed on your computer and that you can access a terminal window (using Terminal on the Mac, or Git Bash on Windows).  It also assumes that you have created an account for yourself on [GitHub](http://github.com).
+
 ### 1. make a new directory and cd into it
 ```
 mkdir BBSRC-git-demo
 cd BBSRC-git-demo
 ```
 
-### 2. create a new git repository
+### 2. create a new (local) git repository
 ```
 git init
+```
+You can now check the status of your local repository (it should be empty)
+```
 git status
 ```
 
-### 3. Start up RStudio, and create a new R script called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
+### 3. Create a sample source code file.
+Start up RStudio. Create a new R script called somecode.R containing the following lines (which  will load the data from the [Lewandowsky et al. study](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0075637):
 ```
 # R code
 df=read.table('http://data.bris.ac.uk/datasets/swyt56qr4vaj17op9cw3sag7d/LskyetalPLOSONE.csv',
@@ -23,6 +29,7 @@ head(df)
 Note: code to be added to the R script is marked with "# R code".  Any cells not marked this way are meant to be typed into the terminal window.
 
 ### 4. After you save the file, run the R script using the "source" button in Rstudio
+Remember to save the file inside the `BBSRC-git-demo` directory you created in step 1.
 
 ### 5. (Hopefully!) this worked, so let's check our file into the repo
 ```git status
@@ -32,9 +39,17 @@ git commit -m"initial add"
 git status
 ```
 
+You may experience an error when you type the command to commit the change.  In this case, you need to enter the following commands to set your identity with git:
+
+```
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+replacing the placeholders with your actual email address and name.
+
 ### Now let's run a linear regression model to see if conspiracist thinking is related to age
 
-### 6. add the following code to somecode.R and source the file:
+### 6. add the following code to the end of somecode.R and source the file using the Source button in RStudio:
 ```
 # R code
 lm.result=lm(conspiracist_avg~age,data=df)
@@ -49,7 +64,7 @@ git commit -m"adding lm"
 
 ### 8. Now let's put this into a repository on github so that we can share it with others and have a persistent backup.
 
-1. log into [github](github.com)
+1. log into [github](http://github.com/)
 2. create a new repository (+ sign at top right)
    * give it the same name as your directory (BBSRC-git-demo)
    * just use the defaults (it should be public) and click "create repository"
@@ -57,7 +72,7 @@ git commit -m"adding lm"
 
 The commands willl look something like:
 ```
-git remote add origin git@github.com:<your username>/BBSRC-git-demo.git
+git remote add origin https://github.com/<your username>/BBSRC-git-demo.git
 git push -u origin master
 ```
 
@@ -100,7 +115,7 @@ git push origin master
 
 After a couple of minutes it should show that the build succeeded
 
-### 12. look at the log to see what we've done so far
+### 12. Have a look at the git log to see what we've done so far, by typing this into the terminal window:
 
 ```
 git log
@@ -108,7 +123,7 @@ git log
 
 ### We were a bit surprised that there is no relation between age and conspiracist thinking, so let's have a closer look at the data
 
-### 13. add the following code and source the file in RStudio
+### 13. add the following code to the end of somecode.R and source the file in RStudio
 
 ```
 # R code
@@ -138,12 +153,13 @@ The change in the file should show up immediately in the RStudio editor window
 ### let's first add a test to check for age outliers
 ### in this study, subjects were supposed to be adults - let's say the reasonable range of adult ages is 18 to 120
 
-### 16. add the following code above the lm command:
+### 16. add the following code immediately above the lm command in somecode.R:
 
 ```
 # R code
 max_age=120
 min_age=18
+
 stopifnot(max(df$age)<max_age)
 stopifnot(min(df$age)>min_age)
 ```
@@ -159,7 +175,7 @@ git push origin master
 a few seconds later, you will see that the automated test starts on CircleCI. a bit later you will see that the test fails due to the error
 
 ### 18. let's add some code to clean up the outliers
-### above the assertion tests, add:
+### Just after the definition of min_age but before the assertion tests, add the following:
 
 ```
 # R code
@@ -179,6 +195,6 @@ git push origin master
 1. go to the builds page and click the gear next to your repo
 2. click on "status badges" and copy the text under "embed code"
   * it will look something like ```[![CircleCI](https://circleci.com/gh/poldrack/BBSRC-git-demo.svg?style=svg)](https://circleci.com/gh/poldrack/BBSRC-git-demo)```
-3. add this into a file called README.md in your github repository
+3. In your github repository, create a new file called README.md, and paste this badge code at the top of the file.
 
 
